@@ -4,9 +4,11 @@ import App from '../App';
 
 test('renders learn react link', () => {
   render(
-    <Router> {/* Wrap the component with the Router */}
+    <Router>
+      {' '}
+      {/* Wrap the component with the Router */}
       <App />
-    </Router>
+    </Router>,
   );
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
