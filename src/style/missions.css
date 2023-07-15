@@ -1,0 +1,83 @@
+table {
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: 1px solid lightgray;
+  border-collapse: collapse;
+  margin-top: 30px;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 5px;
+  color: var(--msn-table-hdr-descipt-color);
+}
+
+th {
+  font-size: 1.5rem;
+}
+
+td {
+  font-size: 1.15rem;
+}
+
+.emt {
+  color: white;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: var(--msn-table-odd-row-bg-color);
+}
+
+th:first-child {
+  vertical-align: top;
+  width: 11%;
+}
+
+button {
+  background: none;
+  margin: 21px;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  padding: 10px;
+  border: 1.99px solid var(--msn-table-jm-btn-bdr-color);
+  color: var(--msn-table-jm-btn-text-color);
+}
+
+button.red {
+  border-style: none;
+  border: 2px solid var(--msn-table-lm-btn-bdr-color);
+  color: var(--msn-table-lm-btn-text-color);
+}
+
+.member {
+  margin: 1px;
+  padding: 0.15rem 0.4rem;
+  letter-spacing: 0.5px;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.17rem;
+  font-weight: 700;
+}
+
+.yes {
+  background-color: var(--rkt-rsv-msn-am-bdg-color);
+}
+
+.no {
+  background-color: var(--msn-table-nam-bdg-color);
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 10.1rem;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  width: 12.8rem;
+}

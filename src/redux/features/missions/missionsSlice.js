@@ -3,21 +3,15 @@ import axios from 'axios';
 
 const missionsURL = 'https://api.spacexdata.com/v3/missions';
 
-export const fetchMissions = createAsyncThunk(
-  'missions/fetchMissions',
-  async () => {
-    try {
-      const response = await axios.get(missionsURL);
-      return response.data;
-    } catch (error) {
-      return error;
-    }
-  },
-);
+export const fetchMissions = createAsyncThunk('missions/fetchMissions', async () => {
+  const response = await axios.get(missionsURL);
+  return response.data;
+});
+
 const initialState = {
   missions: [],
   isLoading: false,
-  error: undefined,
+  error: null,
 };
 
 export const missionsSlice = createSlice({
@@ -26,25 +20,24 @@ export const missionsSlice = createSlice({
   reducers: {
     reserveMission: (state, action) => {
       const id = action.payload;
-      const newState = state.missions.map((mission) => {
+      state.missions = state.missions.map((mission) => {
         if (mission.mission_id !== id) return mission;
         return { ...mission, reserved: true };
       });
-      return { ...state, missions: newState };
     },
     leaveMission: (state, action) => {
       const id = action.payload;
-      const newState = state.missions.map((mission) => {
+      state.missions = state.missions.map((mission) => {
         if (mission.mission_id !== id) return mission;
         return { ...mission, reserved: false };
       });
-      return { ...state, missions: newState };
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchMissions.pending, (state) => {
         state.isLoading = true;
+        state.error = null;
       })
       .addCase(fetchMissions.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -52,10 +45,9 @@ export const missionsSlice = createSlice({
       })
       .addCase(fetchMissions.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.error.message;
       });
   },
-
 });
 
 export const { reserveMission, leaveMission } = missionsSlice.actions;

@@ -1,0 +1,53 @@
+.card {
+  display: flex;
+  width: 100%;
+  margin: 0 0 2rem 0;
+}
+
+.card img {
+  width: 22.25rem;
+  margin: 0 1.8rem 0 0;
+}
+
+.info h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.95rem;
+  font-weight: 500;
+  color: var(--rkt-name-color);
+}
+
+.info p {
+  padding: 0;
+  font-size: 1.4rem;
+  letter-spacing: -0.5px;
+  color: var(--rkt-descipt-color);
+}
+
+.info span {
+  background-color: var(--rkt-rsv-msn-am-bdg-color);
+  color: white;
+  font-size: 1rem;
+  padding: 2px 6px;
+  font-weight: 500;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+  margin-right: 0.9rem;
+}
+
+.info button {
+  margin: 0;
+  padding: 5px 20px 5px 20px;
+  height: 3.5rem;
+  color: white;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--nav-link-rsv-rkt-btn-color);
+}
+
+button.cl {
+  color: var(--rkt-rsv-cancel-btn-text-color);
+  background: none;
+  border: 2px solid var(--rkt-rsv-cancel-btn-bdr-color);
+}

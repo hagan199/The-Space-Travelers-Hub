@@ -3,21 +3,15 @@ import axios from 'axios';
 
 const rocketURL = 'https://api.spacexdata.com/v4/rockets';
 
-export const fetchRockets = createAsyncThunk(
-  'rokets/fetchRokets',
-  async () => {
-    try {
-      const response = await axios.get(rocketURL);
-      return response.data;
-    } catch (error) {
-      return error;
-    }
-  },
-);
+export const fetchRockets = createAsyncThunk('rockets/fetchRockets', async () => {
+  const response = await axios.get(rocketURL);
+  return response.data;
+});
+
 const initialState = {
   rockets: [],
   isLoading: false,
-  error: undefined,
+  error: null,
 };
 
 export const rocketsSlice = createSlice({
@@ -26,19 +20,17 @@ export const rocketsSlice = createSlice({
   reducers: {
     reserveRockets: (state, action) => {
       const id = action.payload;
-      const newState = state.rockets.map((rocket) => {
+      state.rockets = state.rockets.map((rocket) => {
         if (rocket.id !== id) return rocket;
         return { ...rocket, reserved: true };
       });
-      return { ...state, rockets: newState };
     },
     cancelRockets: (state, action) => {
       const id = action.payload;
-      const newState = state.rockets.map((rocket) => {
+      state.rockets = state.rockets.map((rocket) => {
         if (rocket.id !== id) return rocket;
         return { ...rocket, reserved: false };
       });
-      return { ...state, rockets: newState };
     },
   },
   extraReducers: (builder) => {
@@ -49,13 +41,17 @@ export const rocketsSlice = createSlice({
       .addCase(fetchRockets.fulfilled, (state, action) => {
         state.isLoading = false;
         state.rockets = action.payload;
+        state.error = null;
       })
       .addCase(fetchRockets.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.error.message;
       });
   },
-
 });
+
 export const { reserveRockets, cancelRockets } = rocketsSlice.actions;
 export default rocketsSlice.reducer;
+
+// This is a comment explaining the purpose of the code or any additional information.
+// Feel free to add your own comments here as needed.
